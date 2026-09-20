@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TrustTracer</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="wrap">
+  <header class="masthead">
+    <h1>TrustTracer</h1>
+    <p>Review authenticity scanner — run any review through the lab.</p>
+  </header>
+
+  <main class="grid">
+    <!-- Left: intake form -->
+    <section class="panel intake">
+      <h2>New scan</h2>
+      <form id="scan-form">
+        <label for="reviewText">Review text <span class="req">required</span></label>
+        <textarea id="reviewText" rows="7" maxlength="5000" placeholder="Paste the review you want checked…" required></textarea>
+        <div class="char-count"><span id="charCount">0</span>/5000</div>
+
+        <button type="submit" id="submitBtn">Run scan</button>
+        <p class="form-error" id="formError" hidden></p>
+      </form>
+    </section>
+
+    <!-- Right: report -->
+    <section class="panel report">
+      <h2>Scan report</h2>
+      <div id="reportEmpty" class="report-empty">
+        <p>Submit a review on the left. The verdict, likelihood score, and reasoning will appear here.</p>
+      </div>
+      <div id="reportBody" class="report-body" hidden>
+        <div class="verdict-row">
+          <div class="verdict-stamp" id="verdictStamp">GENUINE</div>
+          <div class="score-block">
+            <div class="score-num"><span id="scoreNum">0</span><span class="score-unit">/100</span></div>
+            <div class="score-label">fake-likelihood score</div>
+          </div>
+        </div>
+        <p class="report-title" id="reportTitle"></p>
+        <p class="reasoning" id="reasoningText"></p>
+        <p class="full-review" id="fullReviewText"></p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Stats -->
+  <section class="stats-strip">
+    <div class="stat"><div class="stat-num" id="statTotal">0</div><div class="stat-label">total scanned</div></div>
+    <div class="stat stat-genuine"><div class="stat-num" id="statGenuine">0</div><div class="stat-label">genuine</div></div>
+    <div class="stat stat-suspicious"><div class="stat-num" id="statSuspicious">0</div><div class="stat-label">suspicious</div></div>
+    <div class="stat stat-fake"><div class="stat-num" id="statFake">0</div><div class="stat-label">fake</div></div>
+  </section>
+
+  <!-- History -->
+  <section class="panel history">
+    <h2>Recent scans</h2>
+    <div id="historyEmpty" class="history-empty">No scans logged yet.</div>
+    <ul id="historyList" class="history-list" hidden></ul>
+  </section>
+
+  <footer class="foot">
+    <p>TrustTracer — analysis is a probabilistic signal from Gemini, not a certified fact. Use judgment.</p>
+  </footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
