@@ -59,10 +59,7 @@ function renderReport(result) {
   fullReviewText.textContent = `"${result.reviewText}"`;
 }
 
-function prependHistoryItem(entry) {
-  historyEmpty.hidden = true;
-  historyList.hidden = false;
-
+function createHistoryItem(entry) {
   scansById[entry.id] = entry;
 
   const li = document.createElement("li");
@@ -87,7 +84,21 @@ function prependHistoryItem(entry) {
     }
   });
 
+  return li;
+}
+
+function prependHistoryItem(entry) {
+  historyEmpty.hidden = true;
+  historyList.hidden = false;
+  const li = createHistoryItem(entry);
   historyList.prepend(li);
+}
+
+function appendHistoryItem(entry) {
+  historyEmpty.hidden = true;
+  historyList.hidden = false;
+  const li = createHistoryItem(entry);
+  historyList.appendChild(li);
 }
 
 function escapeHtml(str) {
@@ -100,9 +111,7 @@ async function loadHistory() {
   const res = await fetch("/api/reviews?limit=15");
   const data = await res.json();
   if (data.reviews && data.reviews.length) {
-    historyEmpty.hidden = true;
-    historyList.hidden = false;
-    data.reviews.forEach((entry) => prependHistoryItem(entry));
+    data.reviews.forEach((entry) => appendHistoryItem(entry));
   }
 }
 
