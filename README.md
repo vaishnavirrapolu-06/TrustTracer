@@ -29,3 +29,7 @@ running history and stats dashboard.
    FIREBASE_SERVICE_ACCOUNT_BASE64=your_base64_encoded_service_account_string
 4. Run `node server.js`
 5. Visit `http://localhost:3000`
+
+## Live Demo
+
+https://trusttracer.onrender.com/
